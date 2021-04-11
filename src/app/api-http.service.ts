@@ -17,5 +17,9 @@ export class ApiHttpService {
     return this.httpClient.post(`${BASE_URL}/register`, JSON.stringify(user), HTTP_OPTIONS);
   }
 
+  userLogin(user: UserCredential): Observable<any>{
+    return this.httpClient.post(`${BASE_URL}/login`, JSON.stringify(user), HTTP_OPTIONS);
+  }
+
 
 }
