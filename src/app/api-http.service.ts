@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UserCredential} from './domain/UserCredential';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {User} from './domain/User';
 
 const BASE_URL = 'http://localhost:8488';
 const HTTP_OPTIONS = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
@@ -26,6 +27,23 @@ export class ApiHttpService {
 
   private headAuthToken(r): void{
     localStorage.setItem('authToken', r.authToken);
+  }
+
+  isAutenticated(): boolean {
+    return localStorage.getItem('authToken') !== null;
+  }
+
+  logout(): void{
+    localStorage.clear();
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.httpClient.get<User[]>(`${BASE_URL}/users`, this.getAuthTokenHeader());
+  }
+
+  private getAuthTokenHeader(): object {
+    const authToken = localStorage.getItem('aurhToken');
+    return {headers: HTTP_OPTIONS.headers.append('Auterization', authToken)};
   }
 
 

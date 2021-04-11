@@ -8,13 +8,19 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
+import { MessageComponent } from './message/message.component';
+import { UsersComponent } from './users/users.component';
+import { ChannelComponent } from './message/channel/channel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    MessageComponent,
+    UsersComponent,
+    ChannelComponent
   ],
   imports: [
     BrowserModule,
